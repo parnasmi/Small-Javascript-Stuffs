@@ -60,8 +60,8 @@ btnHold.addEventListener('click', function () {
 		scores[activePlayer] += currentScore;
 		document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 
-		//2.Checkif player's score is >= 1000
-		if (scores[activePlayer] >= 10) {
+		//2.Checkif player's score is >= 100
+		if (scores[activePlayer] >= 100) {
 			//Finish the game
 			this.setAttribute('disabled', 'disabled');
 			btnRoll.setAttribute('disabled', 'disabled');
