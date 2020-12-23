@@ -170,3 +170,20 @@ btnTransfer.addEventListener('click', function (e) {
 	//Update UI
 	updateUI(currentAccount);
 });
+
+//Delete the current account
+btnClose.addEventListener('click', function (e) {
+	e.preventDefault();
+
+	const username = inputCloseUsername.value;
+	const pin = inputClosePin.value;
+
+	if (currentAccount.pin === Number(pin) && currentAccount.username === username) {
+		const index = accounts.findIndex(acc => acc.username === username);
+		accounts.splice(index, 1);
+	}
+
+	inputCloseUsername.value = inputClosePin.value = '';
+	containerApp.style.opacity = 0;
+	labelWelcome.textContent = 'Log in to get started';
+});
