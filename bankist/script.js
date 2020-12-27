@@ -73,14 +73,14 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const displayContainer = movements => {
+const displayContainer = (movements, sort) => {
 	containerMovements.innerHTML = '';
-
-	movements.forEach((mov, i) => {
+	const moves = sort ? movements.slice().sort((a, b) => a - b) : movements;
+	moves.forEach((mov, i) => {
 		const type = mov > 1 ? 'deposit' : 'withdrawal';
 		const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${i + 1} deposit</div>
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__date">3 days ago</div>
         <div class="movements__value">${mov}€</div>
       </div
@@ -201,4 +201,13 @@ btnLoan.addEventListener('click', function (e) {
 		updateUI(currentAccount);
 	}
 	inputLoanAmount.value = '';
+});
+
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+	e.preventDefault();
+
+	displayContainer(currentAccount.movements, !sorted);
+	sorted = !sorted;
 });
