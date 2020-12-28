@@ -94,7 +94,7 @@ const displayContainer = (movements, sort) => {
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__date">3 days ago</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div
     `;
 		containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -114,7 +114,7 @@ createUsernames(accounts);
 
 const displayCalcBalance = acc => {
 	acc.balance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-	labelBalance.textContent = `${acc.balance}€`;
+	labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = acc => {
@@ -127,9 +127,9 @@ const calcDisplaySummary = acc => {
 		.filter(int => int > 1)
 		.reduce((acc, curr) => acc + curr, 0);
 
-	labelSumIn.textContent = `${income}€`;
-	labelSumOut.textContent = `${Math.abs(outcome)}€`;
-	labelSumInterest.textContent = `${Math.abs(interest)}€`;
+	labelSumIn.textContent = `${income.toFixed(2)}€`;
+	labelSumOut.textContent = `${Math.abs(outcome).toFixed(2)}€`;
+	labelSumInterest.textContent = `${Math.abs(interest).toFixed(2)}€`;
 };
 
 const updateUI = acc => {
@@ -204,7 +204,7 @@ btnClose.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
 	e.preventDefault();
 
-	const amount = Number(inputLoanAmount.value);
+	const amount = Math.floor(inputLoanAmount.value);
 
 	if (amount > 0 && currentAccount.movements.some(mov => mov > amount * 0.1)) {
 		//Add movement
