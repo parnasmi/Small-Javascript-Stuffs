@@ -85,15 +85,26 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const displayContainer = (movements, sort) => {
+const displayContainer = (acc, sort) => {
+	const { movements, movementsDates } = acc;
+
 	containerMovements.innerHTML = '';
 	const moves = sort ? movements.slice().sort((a, b) => a - b) : movements;
 	moves.forEach((mov, i) => {
 		const type = mov > 1 ? 'deposit' : 'withdrawal';
+
+		const date = new Date(movementsDates[i]);
+
+		const day = `${date.getDate()}`.padStart(2, 0);
+		const month = `${date.getMonth()}`.padStart(2, 0);
+		const year = date.getFullYear();
+
+		const displayDate = `${day}/${month}/${year}`;
+
 		const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__date">3 days ago</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div
     `;
@@ -134,7 +145,7 @@ const calcDisplaySummary = acc => {
 
 const updateUI = acc => {
 	//Display movements
-	displayContainer(acc.movements);
+	displayContainer(acc);
 
 	//Display balance
 	displayCalcBalance(acc);
@@ -160,6 +171,16 @@ btnLogin.addEventListener('click', function (e) {
 
 		//Update UI
 		updateUI(currentAccount);
+
+		const date = new Date();
+
+		const day = `${date.getDate()}`.padStart(2, 0);
+		const month = `${date.getMonth()}`.padStart(2, 0);
+		const year = date.getFullYear();
+		const hours = `${date.getHours()}`.padStart(2, 0);
+		const minutes = `${date.getMinutes()}`.padStart(2, 0);
+
+		labelDate.textContent = `${day}/${month}/${year} | ${hours} : ${minutes}`;
 	}
 });
 
@@ -178,6 +199,9 @@ btnTransfer.addEventListener('click', function (e) {
 	) {
 		receiverAcc.movements.push(amount);
 		currentAccount.movements.push(-amount);
+
+		receiverAcc.movementsDates.push(new Date().toISOString());
+		currentAccount.movementsDates.push(new Date().toISOString());
 	}
 	//Update UI
 	updateUI(currentAccount);
@@ -209,6 +233,7 @@ btnLoan.addEventListener('click', function (e) {
 	if (amount > 0 && currentAccount.movements.some(mov => mov > amount * 0.1)) {
 		//Add movement
 		currentAccount.movements.push(amount);
+		currentAccount.movementsDates.push(new Date().toISOString());
 		//Update UI(When you don't use React😊 )
 		updateUI(currentAccount);
 	}
@@ -220,6 +245,6 @@ let sorted = false;
 btnSort.addEventListener('click', function (e) {
 	e.preventDefault();
 
-	displayContainer(currentAccount.movements, !sorted);
+	displayContainer(currentAccount, !sorted);
 	sorted = !sorted;
 });
