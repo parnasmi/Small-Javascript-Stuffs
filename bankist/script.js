@@ -73,10 +73,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
 const currencies = new Map([
 	['USD', 'United States dollar'],
 	['EUR', 'Euro'],
@@ -89,18 +85,26 @@ const calcDaysPassed = (date1, date2) => {
 	return Math.round(Math.abs((date1 - date2) / (1000 * 60 * 60 * 24)));
 };
 
-const formatDates = date => {
+const formatDates = (date, locale) => {
 	const daysPassed = calcDaysPassed(new Date(), date);
-	console.log('daysPassed', daysPassed);
 
 	if (daysPassed === 0) return 'today';
 	if (daysPassed === 1) return 'yesterday';
 	if (daysPassed <= 7) return `${daysPassed} days passed`;
 
-	const day = `${date.getDate()}`.padStart(2, 0);
-	const month = `${date.getMonth()}`.padStart(2, 0);
-	const year = date.getFullYear();
-	return `${day}/${month}/${year}`;
+	// const day = `${date.getDate()}`.padStart(2, 0);
+	// const month = `${date.getMonth()}`.padStart(2, 0);
+	// const year = date.getFullYear();
+	// return `${day}/${month}/${year}`;
+
+	return new Intl.DateTimeFormat(locale).format(date);
+};
+
+const formatCur = (value, locale, currency) => {
+	return new Intl.NumberFormat(locale, {
+		style: 'currency',
+		currency: currency,
+	}).format(value);
 };
 
 const displayContainer = (acc, sort) => {
@@ -112,13 +116,15 @@ const displayContainer = (acc, sort) => {
 		const type = mov > 1 ? 'deposit' : 'withdrawal';
 
 		const date = new Date(movementsDates[i]);
-		const displayDate = formatDates(date);
+		const displayDate = formatDates(date, acc.locale);
+
+		const formattedMov = formatCur(mov, acc.locale, acc.currency);
 
 		const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div
     `;
 		containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -138,11 +144,11 @@ createUsernames(accounts);
 
 const displayCalcBalance = acc => {
 	acc.balance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-	labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+	labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 const calcDisplaySummary = acc => {
-	const { movements, interestRate } = acc;
+	const { movements, interestRate, locale, currency } = acc;
 	const income = movements.filter(mov => mov > 0).reduce((acc, curr) => acc + curr, 0);
 	const outcome = movements.filter(mov => mov < 0).reduce((acc, curr) => acc + curr, 0);
 	const interest = movements
@@ -151,9 +157,9 @@ const calcDisplaySummary = acc => {
 		.filter(int => int > 1)
 		.reduce((acc, curr) => acc + curr, 0);
 
-	labelSumIn.textContent = `${income.toFixed(2)}€`;
-	labelSumOut.textContent = `${Math.abs(outcome).toFixed(2)}€`;
-	labelSumInterest.textContent = `${Math.abs(interest).toFixed(2)}€`;
+	labelSumIn.textContent = formatCur(income, locale, currency);
+	labelSumOut.textContent = formatCur(Math.abs(outcome), locale, currency);
+	labelSumInterest.textContent = formatCur(Math.abs(interest), locale, currency);
 };
 
 const updateUI = acc => {
@@ -186,14 +192,18 @@ btnLogin.addEventListener('click', function (e) {
 		updateUI(currentAccount);
 
 		const date = new Date();
+		const options = {
+			hour: 'numeric',
+			minute: 'numeric',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+			weekday: 'long',
+		};
 
-		const day = `${date.getDate()}`.padStart(2, 0);
-		const month = `${date.getMonth()}`.padStart(2, 0);
-		const year = date.getFullYear();
-		const hours = `${date.getHours()}`.padStart(2, 0);
-		const minutes = `${date.getMinutes()}`.padStart(2, 0);
+		const locale = navigator.language;
 
-		labelDate.textContent = `${day}/${month}/${year} | ${hours} : ${minutes}`;
+		labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, options).format(date);
 	}
 });
 
