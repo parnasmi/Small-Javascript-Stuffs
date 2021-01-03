@@ -4,6 +4,9 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
+/////////////////////////////////////////////////
+let currentAccount, timer;
+
 // Data
 const account1 = {
 	owner: 'Jonas Schmedtmann',
@@ -142,6 +145,12 @@ const createUsernames = accs => {
 };
 createUsernames(accounts);
 
+const resetUI = () => {
+	inputCloseUsername.value = inputClosePin.value = '';
+	containerApp.style.opacity = 0;
+	labelWelcome.textContent = 'Log in to get started';
+};
+
 const displayCalcBalance = acc => {
 	acc.balance = acc.movements.reduce((acc, curr) => acc + curr, 0);
 	labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
@@ -162,6 +171,28 @@ const calcDisplaySummary = acc => {
 	labelSumInterest.textContent = formatCur(Math.abs(interest), locale, currency);
 };
 
+const logoutTimer = () => {
+	let time = 300;
+	const tick = () => {
+		const minute = String(Math.trunc(time / 60)).padStart(2, 0);
+		const seconds = String(time % 60).padStart(2, 0);
+
+		//In each call, print the remaining time to UI
+		labelTimer.textContent = `${minute}:${seconds}`;
+
+		if (time === 0) {
+			clearTimeout(timer);
+
+			resetUI();
+		}
+
+		time--;
+	};
+	tick();
+	const timer = setInterval(tick, 1000);
+	return timer;
+};
+
 const updateUI = acc => {
 	//Display movements
 	displayContainer(acc);
@@ -173,8 +204,6 @@ const updateUI = acc => {
 	calcDisplaySummary(acc);
 };
 
-/////////////////////////////////////////////////
-let currentAccount;
 btnLogin.addEventListener('click', function (e) {
 	e.preventDefault();
 	currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
@@ -190,6 +219,12 @@ btnLogin.addEventListener('click', function (e) {
 
 		//Update UI
 		updateUI(currentAccount);
+
+		if (timer) {
+			clearInterval(timer);
+		}
+		//Calling countdown timer.
+		timer = logoutTimer();
 
 		const date = new Date();
 		const options = {
@@ -228,6 +263,10 @@ btnTransfer.addEventListener('click', function (e) {
 	}
 	//Update UI
 	updateUI(currentAccount);
+
+	//reset timer
+	clearInterval(timer);
+	timer = logoutTimer();
 });
 
 //Delete the current account
@@ -242,9 +281,7 @@ btnClose.addEventListener('click', function (e) {
 		accounts.splice(index, 1);
 	}
 
-	inputCloseUsername.value = inputClosePin.value = '';
-	containerApp.style.opacity = 0;
-	labelWelcome.textContent = 'Log in to get started';
+	resetUI();
 });
 
 //Request loan
