@@ -7,8 +7,10 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnLearnMore = document.querySelector('.btn--scroll-to');
 
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -27,3 +29,8 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+btnLearnMore.addEventListener('click', function(e){
+  const section1 = document.querySelector('#section--1');
+  section1.scrollIntoView({behavior: 'smooth'});
+})
