@@ -9,6 +9,7 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnLearnMore = document.querySelector('.btn--scroll-to');
 const navLinks = document.querySelector('.nav__links');
+const nav = document.querySelector('.nav');
 
 const openModal = function (e) {
 	e.preventDefault();
@@ -68,3 +69,22 @@ tabsContainer.addEventListener('click', function (e) {
 		.querySelector(`.operations__content--${clicked.dataset.tab}`)
 		.classList.add('operations__content--active');
 });
+
+const hoverHandle = function (e) {
+	if (e.target.classList.contains('nav__link')) {
+		const link = e.target;
+		const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+		const logo = document.querySelector('.nav__logo');
+
+		siblings.forEach(el => {
+			if (el !== link) {
+				el.style.opacity = this;
+			}
+		});
+		logo.style.opacity = this;
+	}
+};
+
+//Hovering menu links
+nav.addEventListener('mouseover', hoverHandle.bind(0.5));
+nav.addEventListener('mouseout', hoverHandle.bind(1));
