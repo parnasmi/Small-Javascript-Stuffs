@@ -122,3 +122,22 @@ const headerObserver = new IntersectionObserver(headerObsCallback, {
 });
 
 headerObserver.observe(header);
+
+//Revealing sections
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = (entries, observer) => {
+	const [entry] = entries;
+
+	if (!entry.isIntersecting) return;
+
+	entry.target.classList.remove('section--hidden');
+	observer.unobserve(entry.target);
+};
+
+const sectionsObserver = new IntersectionObserver(revealSection, { root: null, threshold: 0.15 });
+
+allSections.forEach(section => {
+	sectionsObserver.observe(section);
+	section.classList.add('section--hidden');
+});
