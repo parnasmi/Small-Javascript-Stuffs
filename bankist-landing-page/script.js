@@ -139,7 +139,7 @@ const sectionsObserver = new IntersectionObserver(revealSection, { root: null, t
 
 allSections.forEach(section => {
 	sectionsObserver.observe(section);
-	// section.classList.add('section--hidden');
+	section.classList.add('section--hidden');
 });
 
 //LazyLoading images
@@ -180,7 +180,6 @@ const slider = () => {
 		document.querySelectorAll('.dots__dot').forEach(dot => {
 			dot.classList.remove('dots__dot--active');
 		});
-		console.log('activeSlide', activeSlide);
 		document
 			.querySelector(`.dots__dot[data-slide="${activeSlide}"]`)
 			.classList.add('dots__dot--active');
