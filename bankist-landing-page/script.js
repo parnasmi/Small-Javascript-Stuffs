@@ -250,3 +250,5 @@ const slider = () => {
 };
 
 slider();
+
+//@amcharts/amcharts4 auth0-js autosuggest-highlight availity-reactstrap-validation chart.js downshift globalize google-map-react mui-datatables react-autosuggest react-big-calendar react-big-calendar react-bootstrap-sweetalert react-chartjs-2 react-credit-cards react-cropper react-d3-speedometer react-dnd-html5-backend  react-dnd react-dragula react-dropzone-component  react-grid-gallery react-hot-loader react-infinite-scroller react-instantsearch react-joyride react-number-format react-draft-wysiwyg react-reactstrap-pagination react-resizable react-sortablejs react-table react-text-mask react-toggle-switch react-tooltip react-twitter-widgets react-virtualized recharts weather-icons
