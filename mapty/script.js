@@ -3,7 +3,7 @@
 class Workout {
 	date = new Date();
 	id = (Date.now() + '').toString().slice(-10);
-
+	clicks = 0;
 	constructor(coords, distance, duration, type) {
 		this.distance = distance;
 		this.duration = duration;
@@ -17,6 +17,10 @@ class Workout {
 		this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
 			months[this.date.getMonth()]
 		} ${this.date.getDate()}`;
+	}
+
+	click() {
+		this.clicks++;
 	}
 }
 
@@ -64,11 +68,13 @@ class App {
 	#map;
 	#mapEvent;
 	#workouts = [];
+	#mapZoomLevel = 13;
 
 	constructor() {
 		this._getPosition();
 		form.addEventListener('submit', this._newWorkout.bind(this));
 		inputType.addEventListener('change', this._toggleElevationField);
+		containerWorkouts.addEventListener('click', this._moveToPosition.bind(this));
 	}
 
 	_getPosition() {
@@ -81,7 +87,7 @@ class App {
 		const { latitude, longitude } = pos.coords;
 		const coords = [latitude, longitude];
 
-		this.#map = L.map('map').setView(coords, 13);
+		this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution:
@@ -128,7 +134,6 @@ class App {
 			const cadence = +inputCadence.value;
 
 			//Check if data is valid
-			// if (!Number.isFinite(distance) || !Number.isFinite(duration) || !Number.isFinite(cadence)) {
 			if (!validInputs(distance, duration, cadence) || !allPositive(distance, duration, cadence)) {
 				return alert('Inputs have to be positive numbers!');
 			}
@@ -145,7 +150,6 @@ class App {
 			}
 			workout = new Cycling(coords, distance, duration, elevation);
 		}
-		console.log('workout', workout);
 
 		//Add new  object to workout array
 		this.#workouts.push(workout);
@@ -223,8 +227,23 @@ class App {
 				</li>
 			`;
 		}
-		console.log('html', html);
 		form.insertAdjacentHTML('afterend', html);
+	}
+
+	_moveToPosition(e) {
+		const workoutEl = e.target.closest('.workout');
+		if (!workoutEl) return;
+
+		const workout = this.#workouts.find(workout => workout.id === workoutEl.dataset.id);
+
+		this.#map.setView(workout.coords, this.#mapZoomLevel, {
+			animation: true,
+			pan: {
+				duration: 1,
+			},
+		});
+
+		workout.click();
 	}
 }
 
