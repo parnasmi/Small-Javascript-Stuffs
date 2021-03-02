@@ -20,4 +20,7 @@
 ### Bankist landing page
 
 [Demo](https://parnasmi.github.io/Small-Javascript-Stuffs/bankist-landing-page/)
+### Mapty
+
+[Demo](https://parnasmi.github.io/Small-Javascript-Stuffs/mapty/)
 
