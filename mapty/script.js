@@ -75,12 +75,17 @@ class App {
 		form.addEventListener('submit', this._newWorkout.bind(this));
 		inputType.addEventListener('change', this._toggleElevationField);
 		containerWorkouts.addEventListener('click', this._moveToPosition.bind(this));
+
+		//Rendering workouts from localstorage;
+		this._getLocalStorage();
 	}
 
 	_getPosition() {
-		navigator.geolocation.getCurrentPosition(this._loadMap.bind(this), () => {
-			console.log('error getting position');
-		});
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(this._loadMap.bind(this), () => {
+				console.log('error getting position');
+			});
+		}
 	}
 
 	_loadMap(pos) {
@@ -95,6 +100,7 @@ class App {
 		}).addTo(this.#map);
 
 		this.#map.on('click', this._showForm.bind(this));
+		this.#workouts.forEach(work => this._renderWorkoutMarker(work));
 	}
 
 	_showForm(mapE) {
@@ -120,7 +126,6 @@ class App {
 
 	_newWorkout(e) {
 		e.preventDefault();
-		console.log('e newWorkout', e);
 		const coords = Object.values(this.#mapEvent.latlng);
 		const validInputs = (...inputs) => inputs.every(input => isFinite(input));
 		const allPositive = (...inputs) => inputs.every(input => input > 0);
@@ -153,7 +158,6 @@ class App {
 
 		//Add new  object to workout array
 		this.#workouts.push(workout);
-		console.log('workouts', this.#workouts);
 
 		//Render workout on as marker
 		this._renderWorkoutMarker(workout);
@@ -163,6 +167,9 @@ class App {
 
 		//Hide form
 		this._hideForm();
+
+		//Storing in localStorage
+		this._setLocalStorage(workout);
 	}
 
 	_renderWorkoutMarker(workout) {
@@ -242,8 +249,24 @@ class App {
 				duration: 1,
 			},
 		});
+		//using the public interface
+		// workout.click();
+	}
 
-		workout.click();
+	_setLocalStorage() {
+		localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+	}
+
+	_getLocalStorage() {
+		const workoutsFromLs = JSON.parse(localStorage.getItem('workouts'));
+		if (!workoutsFromLs) return;
+		this.#workouts = workoutsFromLs;
+		this.#workouts.forEach(work => this._renderWorkout(work));
+	}
+
+	reset() {
+		localStorage.removeItem('workouts');
+		location.reload();
 	}
 }
 
