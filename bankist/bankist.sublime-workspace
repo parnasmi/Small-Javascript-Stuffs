@@ -8,82 +8,67 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/index.html",
-			"settings":
-			{
-				"buffer_size": 11659,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/script.js",
 			"settings":
 			{
-				"buffer_size": 4667,
+				"buffer_size": 7224,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/close_other_tabs.py",
+			"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/levelup/lt-react-redux/src/App.jsx",
 			"settings":
 			{
-				"buffer_size": 451,
-				"encoding": "UTF-8",
+				"buffer_size": 1122,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+			"file": "/Users/maksadkulovilhom/Downloads/IndexedDB-END/js/app.js",
 			"settings":
 			{
-				"buffer_size": 128,
-				"encoding": "UTF-8",
+				"buffer_size": 6989,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/style.css",
+			"file": "/Users/maksadkulovilhom/Downloads/tag_round [#1174].svg",
 			"settings":
 			{
-				"buffer_size": 10902,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 618,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+			"file": "/Users/maksadkulovilhom/Downloads/plus_circle [#1427].svg",
 			"settings":
 			{
-				"buffer_size": 21693,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 594,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/messages/install.txt",
+			"file": "/Users/maksadkulovilhom/Downloads/Exclusion 2.svg",
 			"settings":
 			{
-				"buffer_size": 1792,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 625,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/.gitignore",
+			"file": "/Users/maksadkulovilhom/Downloads/Combined Shape.svg",
 			"settings":
 			{
-				"buffer_size": 29,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 664,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Package Control Messages\n========================\n\nJsPrettier\n----------\n\n  ┌────────────────────────────────────────────────────────────────────────────┐\n  │                     _     ____           _   _   _                         │\n  │                    | |___|  _ \\ _ __ ___| |_| |_(_) ___ _ __               │\n  │                 _  | / __| |_) | '__/ _ \\ __| __| |/ _ \\ '__|              │\n  │                | |_| \\__ \\  __/| | |  __/ |_| |_| |  __/ |                 │\n  │                 \\___/|___/_|   |_|  \\___|\\__|\\__|_|\\___|_|                 │\n  │                                                                            │\n  │     Sublime Text Plug-in for Prettier, the opinionated code formatter.     │\n  └────────────────────────────────────────────────────────────────────────────┘\n\n  ## Getting started\n\n  ### Install Prettier\n\n  If you've already installed Prettier, you're all set... otherwise:\n\n      # yarn (local):\n      yarn add prettier --dev\n\n      # yarn (global):\n      yarn global add prettier\n\n      # npm (local):\n      npm install --save-dev prettier\n\n      # npm (global):\n      npm install --global prettier\n\n  ### Usage\n\n  There are three ways to format code...\n\n  1. Command Palette\n\n      \"Ctrl/Cmd + Shift + P\", then type \"JsPrettier Format Code\".\n\n  2. Context Menu\n\n      Right-click the file view and select \"JsPrettier Format Code\".\n\n  3. Key Binding\n\n      There is no default key binding for this plug-in.\n\n      To add a key binding, navigate to \"Preferences\" -> \"Key Bindings...\", and\n      add an entry for \"js_prettier\". For example...\n\n          { \"keys\": [\"shift+alt+f\"], \"command\": \"js_prettier\" }\n\n      Change \"shift+alt+f\" with your preferred key combination.\n\n  ## Issues\n\n  For additional help, including reporting issues, please visit the JsPrettier\n  home page at https://github.com/jonlabelle/SublimeJsPrettier.\n\n  ## License\n\n  The MIT License (MIT)\n  Copyright (c) Jon LaBelle",
+			"contents": "Package Control Messages\n========================\n\nJsPrettier\n----------\n\n  ┌──────────────────────────────────────────────────────────────────────────────┐\n  │                     _     ____           _   _   _                           │\n  │                    | |___|  _ \\ _ __ ___| |_| |_(_) ___ _ __                 │\n  │                 _  | / __| |_) | '__/ _ \\ __| __| |/ _ \\ '__|                │\n  │                | |_| \\__ \\  __/| | |  __/ |_| |_| |  __/ |                   │\n  │                 \\___/|___/_|   |_|  \\___|\\__|\\__|_|\\___|_|                   │\n  │                                                                              │\n  └──────────────────────────────────────────────────────────────────────────────┘\n\n  ## 1.38.0\n\n  Added Prettier Ignore snippets for:\n\n  - CSS\n  - GraphQL\n  - HTML\n  - Handlebars\n  - JSX\n  - JavaScript\n  - Markdown\n  - YAML\n\n  Tab trigger is \"pi\".",
 			"settings":
 			{
-				"buffer_size": 1941,
+				"buffer_size": 903,
 				"line_ending": "Unix",
 				"name": "Package Control Messages",
 				"read_only": true,
@@ -103,12 +88,20 @@
 		"selected_items":
 		[
 			[
-				"jspre",
-				"JsPrettier: Format Code"
+				"syn ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
 			],
 			[
 				"inst",
 				"Package Control: Install Package"
+			],
+			[
+				"jspre",
+				"JsPrettier: Format Code"
 			],
 			[
 				"inspa",
@@ -125,10 +118,6 @@
 			[
 				"live",
 				"LiveReload: Enable/disable plug-ins"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
 			],
 			[
 				"insta",
@@ -159,11 +148,20 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page"
+		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page",
+		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/levelup/lt-react-redux/src/movies"
 	],
 	"file_history":
 	[
+		"/Users/maksadkulovilhom/My Files/Dev/Zaytun/kennekt-front-end-business/src/components/AsyncComponent/AsyncComponent.js",
+		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/EasyMotion/README.md",
+		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/close_other_tabs.py",
 		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/index.html",
+		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/style.css",
+		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/messages/install.txt",
+		"/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/.gitignore",
 		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/JsPrettier.sublime-settings",
 		"/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/LiveReload/LiveReload.sublime-settings",
 		"/Users/maksadkulovilhom/My Files/Dev/Zaytun/kennekt-front-end-business/src/App.js"
@@ -201,57 +199,29 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11659,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1157,
-								1157
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/script.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4667,
+						"buffer_size": 7224,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3019,
-								3019
+								0,
+								0
 							]
 						],
 						"settings":
 						{
+							"easy_motion_mode": false,
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
@@ -259,29 +229,85 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/close_other_tabs.py",
+					"buffer": 1,
+					"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/levelup/lt-react-redux/src/App.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 451,
+						"buffer_size": 1122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								451,
-								451
+								347,
+								347
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/maksadkulovilhom/Downloads/IndexedDB-END/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2536,
+								3181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/maksadkulovilhom/Downloads/tag_round [#1174].svg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 618,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								618
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/zzz A File Icon zzz/aliases/XML (SVG).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -291,55 +317,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 128,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								128,
-								128
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (Sublime).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
 					"buffer": 4,
-					"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/style.css",
+					"file": "/Users/maksadkulovilhom/Downloads/plus_circle [#1427].svg",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10902,
+						"buffer_size": 594,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								812,
-								812
+								0,
+								594
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/zzz A File Icon zzz/aliases/XML (SVG).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -350,105 +346,74 @@
 				},
 				{
 					"buffer": 5,
-					"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/JsPrettier.sublime-settings",
+					"file": "/Users/maksadkulovilhom/Downloads/Exclusion 2.svg",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21693,
+						"buffer_size": 625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3810,
-								3810
+								0,
+								625
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/zzz A File Icon zzz/aliases/JSON (Sublime).sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/zzz A File Icon zzz/aliases/XML (SVG).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "/Users/maksadkulovilhom/Library/Application Support/Sublime Text 3/Packages/JsPrettier/messages/install.txt",
+					"file": "/Users/maksadkulovilhom/Downloads/Combined Shape.svg",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1792,
+						"buffer_size": 664,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								940,
-								940
+								0,
+								664
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/zzz A File Icon zzz/aliases/XML (SVG).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "/Users/maksadkulovilhom/My Files/Dev/others_stuffs/Training/JS/Small-Javascript-Stuffs/bankist-landing-page/.gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 29,
+						"buffer_size": 903,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								29,
-								29
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1941,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								972,
-								972
+								903,
+								903
 							]
 						],
 						"settings":
@@ -462,7 +427,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -499,6 +464,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
