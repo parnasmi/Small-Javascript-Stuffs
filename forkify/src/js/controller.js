@@ -22,8 +22,11 @@ const showRecipeController = async function () {
 	}
 };
 
-['load'].forEach(ev => window.addEventListener(ev, showRecipeController));
+const init = function () {
+	recipeView.addHandlerRender(showRecipeController);
+}
 
+init();
 // showRecipe();
 
 ///////////////////////////////////////
