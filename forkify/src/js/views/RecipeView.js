@@ -3,7 +3,7 @@ import {Fraction} from 'fractional';
 class RecipeView {
     #parentElement = document.querySelector('.recipe');
     #data;
-    #errrorMessage = 'Could not be found. Please try another one.'
+    #errorMessage = 'Could not be found. Please try another one.'
     #message = '';
 
     render(data) {
@@ -17,7 +17,7 @@ class RecipeView {
         this.#parentElement.innerHTML = '';
     }
 
-    renderError(message = this.#errrorMessage) {
+    renderError(message = this.#errorMessage) {
         const markup =  `
             <div class="error">
                 <div>
