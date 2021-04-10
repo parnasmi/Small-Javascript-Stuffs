@@ -1,3 +1,4 @@
+
 class SearchView {
     #parentEl = document.querySelector('.search');
     #queryEl = this.#parentEl.querySelector('.search__field');

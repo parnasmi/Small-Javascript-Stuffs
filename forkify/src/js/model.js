@@ -1,4 +1,4 @@
-import { API_URL } from './config';
+import { API_URL, SEARCH_PER_PAGE } from './config';
 import { getJSON } from './helpers';
 
 export const state = {
@@ -6,8 +6,14 @@ export const state = {
 	search: {
 		query: '',
 		results: [],
+		page: 1,
+		searchPerPage: SEARCH_PER_PAGE,
 	},
 };
+
+console.log('state', state);
+
+
 
 //https://forkify-api.herokuapp.com/v2
 //5ed6604591c37cdc054bcd09
@@ -51,3 +57,28 @@ export const loadSearchResults = async query => {
 		throw e;
 	}
 };
+
+export const getSearchResultsPage = (page = state.search.page) => {
+	state.search.page = page;
+	const {
+		search: {
+			searchPerPage,
+			results: searchResults
+		},
+	} = state;
+
+	const start = (page - 1) * searchPerPage;
+	const end = page * searchPerPage;
+
+	const results = [...searchResults];
+	return results.slice(start, end);
+};
+
+
+export const updateServings = (newServing) => {
+	state.recipe.ingredients.forEach(ing => {
+		ing.quantity = ing.quantity * (newServing / state.recipe.servings)
+	})
+	state.recipe.servings = newServing;
+
+}
