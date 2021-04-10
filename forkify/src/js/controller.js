@@ -38,8 +38,7 @@ const searchController = async function () {
 		await model.loadSearchResults(query);
 
 		//3) Render results
-		ResultsView.render(model.state.search.results);
-		console.log('state', model.state);
+		ResultsView.render(model.getSearchResultsPage(1));
 	} catch (e) {
 		console.error(e);
 	}
