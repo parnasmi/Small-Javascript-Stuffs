@@ -11,6 +11,8 @@ export const state = {
 	},
 };
 
+console.log('state', state);
+
 
 
 //https://forkify-api.herokuapp.com/v2
@@ -71,3 +73,12 @@ export const getSearchResultsPage = (page = state.search.page) => {
 	const results = [...searchResults];
 	return results.slice(start, end);
 };
+
+
+export const updateServings = (newServing) => {
+	state.recipe.ingredients.forEach(ing => {
+		ing.quantity = ing.quantity * (newServing / state.recipe.servings)
+	})
+	state.recipe.servings = newServing;
+
+}
