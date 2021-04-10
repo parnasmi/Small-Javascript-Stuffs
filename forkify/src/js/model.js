@@ -6,9 +6,12 @@ export const state = {
 	search: {
 		query: '',
 		results: [],
-		page: 1
+		page: 1,
+		searchPerPage: SEARCH_PER_PAGE,
 	},
 };
+
+
 
 //https://forkify-api.herokuapp.com/v2
 //5ed6604591c37cdc054bcd09
@@ -54,9 +57,17 @@ export const loadSearchResults = async query => {
 };
 
 export const getSearchResultsPage = (page = state.search.page) => {
-	const start = (page - 1) * SEARCH_PER_PAGE;
-	const end = page * SEARCH_PER_PAGE;
+	state.search.page = page;
+	const {
+		search: {
+			searchPerPage,
+			results: searchResults
+		},
+	} = state;
 
-	const results = [...state.search.results];
+	const start = (page - 1) * searchPerPage;
+	const end = page * searchPerPage;
+
+	const results = [...searchResults];
 	return results.slice(start, end);
-}
+};
