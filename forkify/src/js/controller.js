@@ -1,6 +1,6 @@
 // import icons from '../img/icons.svg'; //Parcel 1
+// import recipeView from './views/RecipeView';
 import * as model from './model';
-import recipeView from './views/RecipeView';
 import SearchView from './views/SearchView';
 import ResultsView from './views/ResultsView';
 import PaginationView from "./views/PaginationView";
@@ -15,16 +15,19 @@ const showRecipeController = async function () {
 	try {
 		const id = window.location.hash.slice(1);
 		if (!id) return;
-		recipeView.renderSpinner();
+		RecipeView.renderSpinner();
+
+		//0) Update results list
+		ResultsView.update(model.getSearchResultsPage())
 
 		//1) Loading recipe
 		await model.loadRecipe(id);
 
 		// 2) Render recipe
-		recipeView.render(model.state.recipe);
+		RecipeView.render(model.state.recipe);
 	} catch (err) {
 		// console.error(err);
-		recipeView.renderError();
+		RecipeView.renderError();
 	}
 };
 
@@ -59,11 +62,12 @@ const servingController = (updateTo) => {
 	model.updateServings(updateTo);
 
 	// Render recipe
-	recipeView.render(model.state.recipe);
+	// RecipeView.render(model.state.recipe);
+	RecipeView.update(model.state.recipe);
 }
 
 const init = function () {
-	recipeView.addHandlerRender(showRecipeController);
+	RecipeView.addHandlerRender(showRecipeController);
 	SearchView.addHandlerSearch(searchController);
 	PaginationView.btnClickHandler(paginationController)
 	RecipeView.updateServingHandler(servingController)
