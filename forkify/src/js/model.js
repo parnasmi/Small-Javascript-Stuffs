@@ -9,11 +9,8 @@ export const state = {
 		page: 1,
 		searchPerPage: SEARCH_PER_PAGE,
 	},
+	bookmarks: [],
 };
-
-console.log('state', state);
-
-
 
 //https://forkify-api.herokuapp.com/v2
 //5ed6604591c37cdc054bcd09
@@ -34,6 +31,7 @@ export const loadRecipe = async id => {
 			servings: recipe.servings,
 			sourceUrl: recipe.sourceUrl,
 		};
+		state.recipe.isBookmarked = state.bookmarks.some(bookmark => bookmark.id === recipe.id);
 	} catch (e) {
 		console.error(e.message);
 		throw e;
@@ -61,10 +59,7 @@ export const loadSearchResults = async query => {
 export const getSearchResultsPage = (page = state.search.page) => {
 	state.search.page = page;
 	const {
-		search: {
-			searchPerPage,
-			results: searchResults
-		},
+		search: { searchPerPage, results: searchResults },
 	} = state;
 
 	const start = (page - 1) * searchPerPage;
@@ -74,11 +69,26 @@ export const getSearchResultsPage = (page = state.search.page) => {
 	return results.slice(start, end);
 };
 
-
-export const updateServings = (newServing) => {
+export const updateServings = newServing => {
 	state.recipe.ingredients.forEach(ing => {
-		ing.quantity = ing.quantity * (newServing / state.recipe.servings)
-	})
+		ing.quantity = ing.quantity * (newServing / state.recipe.servings);
+	});
 	state.recipe.servings = newServing;
+};
 
-}
+export const handleBookmark = (recipe, type) => {
+	function markBookmarked(type) {
+		if (recipe.id === state.recipe.id) state.recipe.isBookmarked = type === 'add';
+	}
+
+	if (type === 'add') {
+		state.bookmarks.push(recipe);
+		markBookmarked('add');
+	} else {
+		const index = state.bookmarks.findIndex(bookmark => bookmark.id === recipe.id);
+		state.bookmarks.splice(index, 1);
+		markBookmarked('remove');
+	}
+
+	// console.log('state.recipe', state.recipe);
+};

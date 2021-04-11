@@ -1,12 +1,13 @@
 // import icons from '../img/icons.svg'; //Parcel 1
+// import recipeView from './views/RecipeView';
 import * as model from './model';
-import recipeView from './views/RecipeView';
 import SearchView from './views/SearchView';
 import ResultsView from './views/ResultsView';
-import PaginationView from "./views/PaginationView";
+import PaginationView from './views/PaginationView';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import RecipeView from "./views/RecipeView";
+import RecipeView from './views/RecipeView';
+import { state } from './model';
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -15,26 +16,29 @@ const showRecipeController = async function () {
 	try {
 		const id = window.location.hash.slice(1);
 		if (!id) return;
-		recipeView.renderSpinner();
+		RecipeView.renderSpinner();
+
+		//0) Update results list
+		ResultsView.update(model.getSearchResultsPage());
 
 		//1) Loading recipe
 		await model.loadRecipe(id);
 
 		// 2) Render recipe
-		recipeView.render(model.state.recipe);
+		RecipeView.render(model.state.recipe);
 	} catch (err) {
 		// console.error(err);
-		recipeView.renderError();
+		RecipeView.renderError();
 	}
 };
 
 const renderSearchResultAndPagination = (page = 1) => {
 	//3) Render results
 	ResultsView.render(model.getSearchResultsPage(page));
-
+	console.log('state after results', { state, page });
 	//4) Render Pagination
-	PaginationView.render(model.state.search)
-}
+	PaginationView.render(model.state.search);
+};
 
 const searchController = async function () {
 	try {
@@ -51,23 +55,30 @@ const searchController = async function () {
 		console.error(e);
 	}
 };
-const paginationController = (pageToShow) => {
-	renderSearchResultAndPagination(pageToShow)
-}
-
-const servingController = (updateTo) => {
-	model.updateServings(updateTo);
-
-	// Render recipe
-	recipeView.render(model.state.recipe);
-}
-
-const init = function () {
-	recipeView.addHandlerRender(showRecipeController);
-	SearchView.addHandlerSearch(searchController);
-	PaginationView.btnClickHandler(paginationController)
-	RecipeView.updateServingHandler(servingController)
+const paginationController = pageToShow => {
+	renderSearchResultAndPagination(pageToShow);
 };
 
+const servingController = updateTo => {
+	model.updateServings(updateTo);
+
+	// Update recipe
+	RecipeView.update(model.state.recipe);
+};
+
+const addBookmarkController = () => {
+	if(model.state.recipe.isBookmarked) model.handleBookmark(state.recipe, 'remove');
+	else model.handleBookmark(state.recipe, 'add');
+
+	RecipeView.update(state.recipe);
+};
+
+const init = function () {
+	RecipeView.addHandlerRender(showRecipeController);
+	SearchView.addHandlerSearch(searchController);
+	PaginationView.btnClickHandler(paginationController);
+	RecipeView.updateServingHandler(servingController);
+	RecipeView.addBookmarkHandler(addBookmarkController);
+};
 
 init();
