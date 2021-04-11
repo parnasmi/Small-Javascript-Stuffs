@@ -80,7 +80,12 @@ const addBookmarkController = () => {
 
 };
 
+const recoverBookmarksController = () => {
+	BookmarksView.render(model.state.bookmarks);
+}
+
 const init = function () {
+	BookmarksView.loadStorageBookmarkHandler(recoverBookmarksController);
 	RecipeView.addHandlerRender(showRecipeController);
 	SearchView.addHandlerSearch(searchController);
 	PaginationView.btnClickHandler(paginationController);
