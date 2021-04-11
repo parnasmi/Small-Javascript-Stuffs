@@ -3,6 +3,7 @@
 import * as model from './model';
 import SearchView from './views/SearchView';
 import ResultsView from './views/ResultsView';
+import BookmarksView from "./views/BookmarksView";
 import PaginationView from './views/PaginationView';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -20,7 +21,7 @@ const showRecipeController = async function () {
 
 		//0) Update results list
 		ResultsView.update(model.getSearchResultsPage());
-
+		BookmarksView.update(model.state.bookmarks);
 		//1) Loading recipe
 		await model.loadRecipe(id);
 
@@ -35,7 +36,7 @@ const showRecipeController = async function () {
 const renderSearchResultAndPagination = (page = 1) => {
 	//3) Render results
 	ResultsView.render(model.getSearchResultsPage(page));
-	console.log('state after results', { state, page });
+	// console.log('state after results', { state, page });
 	//4) Render Pagination
 	PaginationView.render(model.state.search);
 };
@@ -67,13 +68,24 @@ const servingController = updateTo => {
 };
 
 const addBookmarkController = () => {
+	//1) Add/Remove Bookmark
 	if(model.state.recipe.isBookmarked) model.handleBookmark(state.recipe, 'remove');
 	else model.handleBookmark(state.recipe, 'add');
 
+	//2) Update Recipe
 	RecipeView.update(state.recipe);
+
+	//3) Render bookmarks
+	BookmarksView.render(model.state.bookmarks);
+
 };
 
+const recoverBookmarksController = () => {
+	BookmarksView.render(model.state.bookmarks);
+}
+
 const init = function () {
+	BookmarksView.loadStorageBookmarkHandler(recoverBookmarksController);
 	RecipeView.addHandlerRender(showRecipeController);
 	SearchView.addHandlerSearch(searchController);
 	PaginationView.btnClickHandler(paginationController);
