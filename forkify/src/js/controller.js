@@ -5,10 +5,12 @@ import SearchView from './views/SearchView';
 import ResultsView from './views/ResultsView';
 import BookmarksView from "./views/BookmarksView";
 import PaginationView from './views/PaginationView';
+import AddRecipeView from "./views/AddRecipeView";
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import RecipeView from './views/RecipeView';
 import { state } from './model';
+import {MODAL_CLOSE_TIMEOUT_SEC} from './config'
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -83,6 +85,28 @@ const addBookmarkController = () => {
 const recoverBookmarksController = () => {
 	BookmarksView.render(model.state.bookmarks);
 }
+const submitController = async (data) => {
+	try {
+		//1) Render spinner
+		AddRecipeView.renderSpinner();
+		//2) Send data
+		await model.createRecipe(data)
+
+		//3) render recipe
+		RecipeView.render(state.recipe)
+
+		//4) Show Success message
+		AddRecipeView.renderSuccess('Recipe was successfully uploaded');
+
+		setTimeout(() => {
+			AddRecipeView.toggleModal();
+		}, MODAL_CLOSE_TIMEOUT_SEC * 1000)
+		console.log('state recipe', model.state.recipe)
+	} catch(ex) {
+		console.error(ex)
+		AddRecipeView.renderError(ex)
+	}
+}
 
 const init = function () {
 	BookmarksView.loadStorageBookmarkHandler(recoverBookmarksController);
@@ -91,6 +115,7 @@ const init = function () {
 	PaginationView.btnClickHandler(paginationController);
 	RecipeView.updateServingHandler(servingController);
 	RecipeView.addBookmarkHandler(addBookmarkController);
+	AddRecipeView.formSubmitHandler(submitController)
 };
 
 init();
