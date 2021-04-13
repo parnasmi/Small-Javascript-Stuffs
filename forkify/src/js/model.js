@@ -1,5 +1,5 @@
 import { API_URL, SEARCH_PER_PAGE,ID_KEY } from './config';
-import { getJSON,sendJSON } from './helpers';
+import { getJSON,sendJSON,AJAX } from './helpers';
 
 export const state = {
 	recipe: {},
@@ -19,7 +19,6 @@ export const state = {
 const createRecipeObject = (data) => {
 
 	let { recipe } = data.data;
-	console.log('recipe', recipe)
 	return  {
 		id: recipe.id,
 		title: recipe.title,
@@ -35,7 +34,7 @@ const createRecipeObject = (data) => {
 
 export const loadRecipe = async id => {
 	try {
-		const data = await getJSON(`${API_URL}/${id}`);
+		const data = await AJAX(`${API_URL}/${id}?key=${ID_KEY}`);
 
 		// let { recipe } = data.data;
 		state.recipe = createRecipeObject(data);
@@ -49,13 +48,14 @@ export const loadRecipe = async id => {
 export const loadSearchResults = async query => {
 	try {
 		state.search.query = query;
-		const data = await getJSON(`${API_URL}/?search=${query}`);
+		const data = await AJAX(`${API_URL}/?search=${query}&key=${ID_KEY}`);
 		state.search.results = data.data.recipes.map(rec => {
 			return {
 				id: rec.id,
 				title: rec.title,
 				imageUrl: rec.image_url,
 				publisher: rec.publisher,
+				...(rec.key && {key: rec.key})
 			};
 		});
 	} catch (e) {
@@ -110,10 +110,10 @@ export const createRecipe = async newRecipe => {
 
 		const ingredients = Object.entries(newRecipe).reduce((acc, [field, value]) => {
 			if (field.startsWith('ingredient') && value.length) {
-				const ingArr = value.replaceAll(' ', '').split(',');
+				// const ingArr = value.replaceAll(' ', '').split(',');
+				const ingArr = value.split(',').map(el => el.trim());
 				if (ingArr.length !== 3) throw new Error('Wrong ingredient format. Please use correct format!');
 				// console.log('field', field, value);
-				console.log(value.split(','));
 				const [quantity, unit, description] = ingArr;
 				return [...acc, { quantity: quantity ? quantity : null, unit, description }];
 			} else {
@@ -133,9 +133,7 @@ export const createRecipe = async newRecipe => {
 			cooking_time: +newRecipe.cookingTime
 		}
 
-		const data = await sendJSON(`${API_URL}?key=${ID_KEY}`, payload)
-		// console.log('payload', payload)
-		// console.log('data', data)
+		const data = await AJAX(`${API_URL}?key=${ID_KEY}`, payload)
 		state.recipe = createRecipeObject(data);
 		handleBookmark(state.recipe, 'add');
 	} catch (e) {
