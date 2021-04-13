@@ -98,10 +98,13 @@ const submitController = async (data) => {
 		//4) Show Success message
 		AddRecipeView.renderSuccess('Recipe was successfully uploaded');
 
+		//5) Render bookmarks
+		BookmarksView.render(model.state.bookmarks);
+		window.history.pushState(null, '', `#${model.state.recipe.id}`)
 		setTimeout(() => {
 			AddRecipeView.toggleModal();
 		}, MODAL_CLOSE_TIMEOUT_SEC * 1000)
-		console.log('state recipe', model.state.recipe)
+		// console.log('state recipe', model.state.recipe)
 	} catch(ex) {
 		console.error(ex)
 		AddRecipeView.renderError(ex)
